@@ -1,7 +1,67 @@
 
-# SODA_driver フローチャート
+# plantUML 
 
-### SODA_EndConfirm
+* reference
+
+https://plantuml.com/ja/class-diagram
+
+---
+### Class 
+```plantuml
+@startuml
+
+note right of api : Interface.
+api "1"---"1" driver 
+driver "1"---"1" mngr 
+api "1"---"1" mngr 
+mngr "1" o--"0..*" mbuf 
+mbuf  <|-- EXTINY 
+mbuf  <|-- LARGE 
+api : SODA_Init()
+api : SODA_Uninit()
+api : SODA_Exec()
+api : SODA_EndConfirm()
+api : SODA_Config()
+api : outnum 
+api : setnum 
+api : getnum 
+note top of driver : drive SODA and mabic, TSUMXD.
+driver : struct hdrinfo
+driver : struct conf 
+driver : set_param() 
+note bottom of mngr : manage mbuf list.
+mngr : i_nextpkt
+mngr : o_nextpkt 
+mngr : o_pkt
+mngr : create_mblist()
+mngr : trim_mblist()
+mbuf : mbuf_get()
+@enduml
+```
+
+```plantuml
+@startuml
+interface Class01
+Class01 "1" *-- "many" Class02 : contains
+
+Class03 o-- Class04 : aggregation
+
+Class05 --> "1" Class06
+@enduml
+```
+
+
+---
+### Sequence
+```plantuml
+@startuml
+title test 
+Alice->Bob
+Bob->Alice
+@enduml
+```
+---
+### Fllow Chart 
 
 ```plantuml
 @startuml
